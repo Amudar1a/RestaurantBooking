@@ -9,7 +9,7 @@ $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'reserve') {
     $data = [
-        'cu stomer_name' => $_POST['customer_name'] ?? '',
+        'customer_name' => $_POST['customer_name'] ?? '',
         'customer_email' => $_POST['customer_email'] ?? '',
         'customer_phone' => $_POST['customer_phone'] ?? '',
         'guest_count' => $_POST['guest_count'] ?? 0,
@@ -39,6 +39,7 @@ $allTables = $tableModel->getAll();
 ?>
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,6 +47,7 @@ $allTables = $tableModel->getAll();
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -125,7 +127,8 @@ $allTables = $tableModel->getAll();
                             <select id="guest_count" name="guest_count" required>
                                 <option value="">Vyberte...</option>
                                 <?php for ($i = 1; $i <= 10; $i++): ?>
-                                    <option value="<?php echo $i; ?>"><?php echo $i; ?> <?php echo $i === 1 ? 'osoba' : ($i <= 4 ? 'osoby' : 'osob'); ?></option>
+                                    <option value="<?php echo $i; ?>"><?php echo $i; ?>
+                                        <?php echo $i === 1 ? 'osoba' : ($i <= 4 ? 'osoby' : 'osob'); ?></option>
                                 <?php endfor; ?>
                             </select>
                         </div>
@@ -137,7 +140,7 @@ $allTables = $tableModel->getAll();
                                 <i class="fas fa-calendar"></i> Datum
                             </label>
                             <input type="date" id="reservation_date" name="reservation_date"
-                                   min="<?php echo date('Y-m-d'); ?>" required>
+                                min="<?php echo date('Y-m-d'); ?>" required>
                         </div>
 
                         <div class="form-group">
@@ -163,7 +166,7 @@ $allTables = $tableModel->getAll();
                             <i class="fas fa-comment"></i> Speciální požadavky
                         </label>
                         <textarea id="special_requests" name="special_requests" rows="3"
-                                  placeholder="Alergie, preference stolu, oslava..."></textarea>
+                            placeholder="Alergie, preference stolu, oslava..."></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-large">
@@ -187,7 +190,8 @@ $allTables = $tableModel->getAll();
                         <h3>Stůl <?php echo htmlspecialchars($table['table_number']); ?></h3>
                         <div class="table-info">
                             <p><i class="fas fa-users"></i> Kapacita: <?php echo $table['capacity']; ?> osob</p>
-                            <p><i class="fas fa-map-marker-alt"></i> Umístění: <?php echo htmlspecialchars($table['location']); ?></p>
+                            <p><i class="fas fa-map-marker-alt"></i> Umístění:
+                                <?php echo htmlspecialchars($table['location']); ?></p>
                         </div>
                         <span class="table-status status-<?php echo $table['status']; ?>">
                             <?php
@@ -239,4 +243,5 @@ $allTables = $tableModel->getAll();
 
     <script src="js/main.js"></script>
 </body>
+
 </html>
